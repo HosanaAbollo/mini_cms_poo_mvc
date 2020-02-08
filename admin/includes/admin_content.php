@@ -16,10 +16,7 @@
 
             $res =  User::find_user_by_id(2);
             $found_user = mysqli_fetch_array($res);
-            $user = new User; 
-            $user->id = $found_user['id'];
-            $user->user_name = $found_user['username'];
-            $user->first_name = $found_user["first_name"];
+
 
             echo $user->id;
 
