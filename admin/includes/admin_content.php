@@ -13,17 +13,17 @@
 
             // Instanciation de la classe User
 
-            $res = User::find_all_users();  // récupérer tout les users
 
-            // Parcourir le tableau et afficher les résultats
-            while($row = mysqli_fetch_array($res))
-            {
-                    echo $row['username'] . ' <br/>';
-            }
+            $res =  User::find_user_by_id(2);
+            $found_user = mysqli_fetch_array($res);
+            $user = new User; 
+            $user->id = $found_user['id'];
+            $user->user_name = $found_user['username'];
+            $user->first_name = $found_user["first_name"];
 
-            $user = User::find_user_by_id(2);
+            echo $user->id;
 
-            echo $user["username"];
+           
 
         ?>
 
