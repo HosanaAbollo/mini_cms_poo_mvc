@@ -11,10 +11,17 @@
         <?php
             if(!$database->connection) { echo "NON CONNECTE A LA BDD"; return false;}
 
-            $sql = "SELECT * from users where id = 1";
+            // Instanciation de la classe User
 
-            $res = $database->query($sql);
-            $user = mysqli_fetch_array($res);
+            $res = User::find_all_users();  // récupérer tout les users
+
+            // Parcourir le tableau et afficher les résultats
+            while($row = mysqli_fetch_array($res))
+            {
+                    echo $row['username'] . ' <br/>';
+            }
+
+            $user = User::find_user_by_id(2);
 
             echo $user["username"];
 
