@@ -8,7 +8,18 @@
             <small>Subheading</small>
         </h1>
 
-        <?php if( $database->connection) { echo "Connecté à la BDD";} ?>
+        <?php
+            if(!$database->connection) { echo "NON CONNECTE A LA BDD"; return false;}
+
+            $sql = "SELECT * from users where id = 1";
+
+            $res = $database->query($sql);
+            $user = mysqli_fetch_array($res);
+
+            echo $user["username"];
+
+        ?>
+
         <ol class="breadcrumb">
             <li>
                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>

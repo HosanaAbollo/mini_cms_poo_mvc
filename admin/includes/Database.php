@@ -22,6 +22,29 @@ class Database
         } 
 
     }
+
+    // Permet d'envoyer des requêtes à la BDD
+    public function query($sql){
+
+        $res = mysqli_query($this->connection, $sql);
+        return $res;
+    }
+
+    // Permet de confirmer la requête 
+    private function confirm_query($res){
+        if(!$res){
+            die("Requête échouée");
+        }
+    }
+
+    // Permet d'échapper les caractères non valide
+    public function escape_string($string)
+    {
+        $escaped_string = mysqli_real_escape_string($this->connection, $string);
+        return $escaped_string;
+    }
+
+
 }
 
 $database = new Database;
