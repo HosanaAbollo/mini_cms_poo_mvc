@@ -9,18 +9,25 @@
         </h1>
 
         <?php
+            // Vérification de connection a la BDD
             if(!$database->connection) { echo "NON CONNECTE A LA BDD"; return false;}
 
             // Instanciation de la classe User
 
+            // Utilisation de methode static
+            // Avantages ?
+            
+            // On cherche un seul user par son id 
+            $unUserBDD =  User::find_user_by_id(2);
+            echo '<pre>';
+            var_dump($unUserBDD);
+            echo '<pre/>';
 
-            $res =  User::find_user_by_id(2);
-            $found_user = mysqli_fetch_array($res);
+            // On l'instancie
+            $unUser = User::instanciation($unUserBDD);
 
-
-            echo $user->id;
-
-           
+            // On récupère son id avec la notation : $classInst->prop
+          //  echo $unUser->id;
 
         ?>
 
