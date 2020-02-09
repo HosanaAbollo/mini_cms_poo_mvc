@@ -51,14 +51,38 @@ class User{
         $userObject = new self;
 
         # Insertion des propriétés de l'objet user via l'enregistrement BDD ( fetch_array necessaire )
-         $userObject->id = $userBDD['id'];
-         $userObject->user_name = $userBDD['username'];
-         $userObject->first_name = $userBDD["first_name"];
+        # $userObject->id = $userBDD['id'];
+        # $userObject->user_name = $userBDD['username'];
+        # $userObject->first_name = $userBDD["first_name";
 
+        #_______________
+        # Les colonnes (id, username, first_name..) des tables en BDD deviennent des propriétés pour un User $obj)
+        # property correspond aux colonnes des tables , 
+        #_______________
+        foreach($userBDD as $attribute => $value)
+        {
+            # Vérifier si l'objet a bien ces propriétés, si oui on fait l'assignement 
+            if(User::has_the_attribute($attribute))
+            {
+                $userBDD->attribute = $value;
+            }
+        }
        # var_dump($userObject);
 
         # Une fois instancié et les propriétés envoyées, on le retourne
         return $userObject;
     }
+
+    private static function has_the_attribute($attribute)
+    {   
+        // Liste des propriétés de l'objet
+         $userKeyList = get_object_vars(new self);
+        
+        # Si l'attribut (id, username ..) BDD correspond a une propriété alors on retourne booleen
+        array_key_exists($attribute, $userKeyList);
+        
+    }
+
+
 
 }
